@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de produto</title>
+</head>
+
+<body>
+    <form id="formCadastrar" action="javascript::void(0)">
+        <p>
+            <label for="Produto">Produto:</label>
+            <input type="text" id="produto" name="produto">
+        </p>
+        <p>
+            <label for="cor">Cor:</label>
+            <select name="cor" id="cor">
+                <option value="">Selecione a cor</option>
+            </select>
+        </p>
+
+        <p>
+            <label for="tamanho">Tamanho:</label>
+            <select name="tamanho" id="tamanho">
+                <option value="">Selecione o tamanho</option>
+            </select>
+        </p>
+        <p>
+            <label for="preco">Preço</label>
+            <input type="number" name="preco" id="preco">
+        </p>
+        <p><input type="button" value="salvar" onclick="save()"></p>
+        <p>
+
+    </form>
+    <table>
+        <hr>
+        <h2>Listar produtos</h2>
+
+        <thead>
+            <th>id</th>
+            <th>Produto</th>
+            <th>Cor</th>
+            <th>Tamanho</th>
+            <th>Preço</th>
+            <th>Ações</th>
+        </thead>
+    </table>
+    <script src="cadastro-produto.js"></script>
+</body>
+
+</html>
