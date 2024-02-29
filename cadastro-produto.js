@@ -22,9 +22,10 @@ function load() {
     if (produtosFromStorage)
         produtos = JSON.parse(produtosFromStorage);
     let tabelaProduto = document.getElementById("tblProdutos");
+    const tbody = tabelaProduto.getElementsByTagName("tbody")[0];
+    tbody.innerHTML = '';
     produtos.forEach(p => {
-        const tbody = tabelaProduto.getElementsByTagName("tbody")[0];
-        const row = tabelaProduto.insertRow();
+        const row = tbody.insertRow();
         row.insertCell(0).innerHTML = p.id;
         row.insertCell(1).innerHTML = p.nome;
         row.insertCell(2).innerHTML = p.cor;
