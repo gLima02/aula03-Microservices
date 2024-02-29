@@ -17,6 +17,47 @@ tamanhos.forEach(tamanho => {
     tamanhosSelect.appendChild(option);
 })
 
+function load(){
+    // Ler o localstorage
+ const produtosFromStorage = localStorage.getItem("produtos")
+    if(produtosFromStorage)
+        produtos = JSON.parse(produtosFromStorage)       
+
+    let tabelaProduto = document.getElementById("tblProdutos") as HTMLTableElement
+    produtos.forEach(p =>{
+        const tbody = tabelaProduto.getElementsByTagName("tbody")[0]
+        const row = tabelaProduto.insertRow()
+        row.insertCell(0).innerHTML = p.id;
+        row.insertCell(1).innerHTML = p.nome;
+        row.insertCell(2).innerHTML = p.cor;
+        row.insertCell(3).innerHTML = p.tamanho;
+        row.insertCell(4).innerHTML = p.preco;
+        const deleteButton = document.createElement("button")
+        deleteButton.textContent = "Remover"
+        deleteButton.addEventListener('click', function(){
+
+            const idProduto = row.cells[0].textContent
+            const produto = row.cells[1].textContent
+            const mensagem = `Confirma a remoção do produto ${produto}`
+            if(confirm(mensagem) == true){
+                //filter: percorre uma lista
+                produtos = produtos.filter(function(produto){
+                    return produto.id !== idProduto
+                })
+                //remover da tabella html
+                row.remove()
+       
+                //atualizar o localstorage
+            localStorage.setItem("produtos", JSON.stringify(produtos))
+            
+            }
+        })
+        row.insertCell(5).appendChild(deleteButton)
+    })    
+
+    
+}
+
 function save(){
     const produtoInput = document.getElementById("produto") as HTMLInputElement
     const corInput = document.getElementById("cor") as HTMLSelectElement
@@ -33,4 +74,6 @@ function save(){
 
     produtos.push(produto)
     localStorage.setItem('produtos', JSON.stringify(produtos))
+    load();
+
 }
