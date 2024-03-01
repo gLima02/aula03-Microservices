@@ -56,8 +56,8 @@ function load(){
         row.insertCell(5).appendChild(deleteButton)
     })    
 
-    
 }
+load();
 
 function save(){
     const produtoInput = document.getElementById("produto") as HTMLInputElement
