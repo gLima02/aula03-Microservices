@@ -31,10 +31,11 @@
             <input type="number" name="preco" id="preco">
         </p>
         <p><input type="button" value="salvar" onclick="save()"></p>
+        <p><input type="button" value="Cancelar" onclick="save()"></p>
         <p>
 
     </form>
-    <table id="tblProdutos" style="border: 1px; border-style: solid;">
+    <table id="tblProdutos" border="1">
         <hr>
         <h2>Listar produtos</h2>
 
@@ -44,7 +45,7 @@
             <th>Cor</th>
             <th>Tamanho</th>
             <th>Preço</th>
-            <th>Ações</th>
+            <th colspan="2">Ações</th>
         </thead>
         <tbody ></tbody>
     </table>

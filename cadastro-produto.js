@@ -49,13 +49,39 @@ function load() {
             }
         });
         row.insertCell(5).appendChild(deleteButton);
+        const editButton = document.createElement("button");
+        editButton.textContent = "Editar";
+        editButton.addEventListener("click", function () {
+            const idProduto = row.cells[0].textContent;
+            const produto = row.cells[1].textContent;
+            const cor = row.cells[2].textContent;
+            const tamanho = row.cells[3].textContent;
+            const preco = row.cells[4].textContent;
+            let inputProduto = document.getElementById("produto");
+            inputProduto.value = String(produto);
+            let inputCor = document.getElementById("cor");
+            inputCor.value = String(cor);
+            let inputTamanho = document.getElementById("tamanho");
+            inputTamanho.value = String(tamanho);
+            let inputPreco = document.getElementById("preco");
+            inputPreco.value = String(preco);
+            //filter: percorre uma lista
+            produtos = produtos.filter(function (produto) {
+                return produto.id !== idProduto;
+            });
+            //remover da tabella html
+            row.remove();
+            //atualizar o localstorage
+            localStorage.setItem("produtos", JSON.stringify(produtos));
+        });
+        row.insertCell(5).appendChild(editButton);
     });
 }
 load();
 function save() {
     const produtoInput = document.getElementById("produto");
     const corInput = document.getElementById("cor");
-    const tamanhoInput = document.getElementById("preco");
+    const tamanhoInput = document.getElementById("tamanho");
     const precoInput = document.getElementById("preco");
     const produto = {
         id: crypto.randomUUID(),
@@ -64,6 +90,10 @@ function save() {
         tamanho: tamanhoInput.value,
         preco: precoInput.value
     };
+    produtoInput.value = "";
+    corInput.value = "0";
+    tamanhoInput.value = "";
+    precoInput.value = "";
     produtos.push(produto);
     localStorage.setItem('produtos', JSON.stringify(produtos));
     load();
